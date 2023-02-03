@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { Configuration, OpenAIApi } from 'openai'
+import Chat from './Chat'
 
 import './App.css'
 
 function App() {
   const [prompt, setPrompt] = useState('')
+  const [result, setResult] = useState('')
+  const [chat, setChat] = useState(false)
   const configuration = new Configuration({
     apiKey:import.meta.env.VITE_Open_AI_Key ,
   });
@@ -17,7 +20,11 @@ function App() {
       size: '1024x1024',
 
     });
-    console.log(res.data.data[0].url);
+    setResult(res.data.data[0].url);
+  }
+
+  const chatHandler = () => {
+    setChat(true)
   }
   
 
@@ -29,7 +36,12 @@ function App() {
       placeholder='type something u fool'
       onChange={(e) => setPrompt(e.target.value)}/>
       <button onClick={generateImage}>Generate Image</button>
+      {result.length>0 ? <img className='result-img' src={result || ''} /> : <></>}
+      <button onClick={chatHandler}>Chat</button>
+      {chat && <Chat/>}
+    
     </div>
+    
   )
 }
 
