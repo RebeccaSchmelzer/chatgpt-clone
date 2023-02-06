@@ -24,7 +24,7 @@ function App() {
   }
 
   const chatHandler = () => {
-    setChat(true)
+    setChat(false)
   }
   
 
