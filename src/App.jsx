@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Configuration, OpenAIApi } from 'openai'
 import Chat from './Chat'
 
+
 import './App.css'
 
 function App() {
